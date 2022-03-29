@@ -1,0 +1,29 @@
+.c-browser-container {
+  padding: 10px 5px;
+  min-height: 20px;
+  background-color: lightblue;
+  box-sizing: border-box;
+  border: 1px black solid;
+  position: relative;
+}
+
+.c-browser-link {
+}
+
+.c-browser-content-list {
+  width: 420px;
+  height: 500px;
+
+  position: absolute;
+  right: 100%;
+  top: 0;
+
+  box-sizing: border-box;
+  border: black solid 2px;
+
+  background-color: lightblue;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,20 @@
+.messages-list-container {
+  background-color: lightgrey;
+}
+.messages-list {
+  position: relative;
+  height: 700px;
+  overflow-y: scroll;
+}
+
+.ml-download-bar {
+  padding: 5px;
+  text-align: center;
+  background-color: lightblue;
+}
+
+.ml-scroll-box {
+  position: absolute;
+  height: 750px;
+  z-index: -5;
+}

@@ -1,0 +1,21 @@
+.cm-container {
+}
+
+.cm-form {}
+
+.cm-text-input {
+  width: 300px;
+  height: 30px;
+}
+
+.cm-send-button {}
+
+
+
+.cm-file-input,
+.cm-file-inputs {
+  display: none;
+}
+.cm-add-button {}
+
+.hidden {}

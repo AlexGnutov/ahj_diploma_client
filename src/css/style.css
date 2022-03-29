@@ -1,0 +1,21 @@
+.app-container {
+  width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+}
+.main-container {
+  flex-grow: 1;
+}
+
+.side-container {
+  width: 180px;
+  background-color: lightsalmon;
+}
+.side-container > *:nth-child(n) {
+  margin-top: 25px;
+}
+
+.hidden {
+  display: none;
+}

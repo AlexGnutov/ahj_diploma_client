@@ -1,0 +1,13 @@
+.search-container {
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: lightblue;
+}
+.sc-search-input {
+  width: 150px;
+}
+
+.search-inactive {
+  opacity: 0.5;
+}
+

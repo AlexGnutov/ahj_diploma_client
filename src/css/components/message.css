@@ -1,0 +1,40 @@
+.message-container {
+  padding: 5px;
+}
+
+.left-position {
+
+}
+.right-position {
+
+}
+
+.message-card {
+  width: 300px;
+  background-color: lightgreen;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.message-header {
+  font-size: small;
+  position: relative;
+  display: flex;
+}
+.message-user {
+  min-width: 50%;
+  text-align: left;
+}
+.message-date {
+  min-width: 50%;
+  text-align: right;
+}
+
+.message-content {}
+
+.message-attachment {}
+
+.hidden {
+  display: none;
+}
