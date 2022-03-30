@@ -1,10 +1,12 @@
 .cm-container {
+  padding: 10px;
+  text-align: center;
 }
 
 .cm-form {}
 
 .cm-text-input {
-  width: 300px;
+  width: 400px;
   height: 30px;
 }
 

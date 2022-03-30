@@ -1,16 +1,5 @@
 import BasicComponent from '../../common/basic-component';
 
-// Only for initials tests without server (delete later):
-const sampleContentData = [
-  {date: Date.now(), fileName: 'test.txt', fileType: 'text/plain'},
-  {date: Date.now(), fileName: 'test2.txt', fileType: 'text/plain'},
-  {date: Date.now(), fileName: 'test3.txt', fileType: 'text/plain'},
-  {date: Date.now(), fileName: 'test1.pdf', fileType: 'application/pdf'},
-  {date: Date.now(), fileName: 'test.jpeg', fileType: 'image/jpeg'},
-  {date: Date.now(), fileName: 'test.png', fileType: 'image/png'},
-];
-
-// Corresponds to Content Browser Element - widget to see various attached files
 export default class ContentBrowser extends BasicComponent {
   constructor() {
     super('c-browser-container');
@@ -19,30 +8,18 @@ export default class ContentBrowser extends BasicComponent {
         <span>Content Browser</span>
         <button class="c-browser-expand-button">+</button>
       </div>
-      <div class="c-browser-links hidden">
-      
-      </div>
-      <div class="c-browser-content-list hidden">
-            
-      </div>
-      
+      <div class="c-browser-links"></div>
+      <div class="c-browser-content-list hidden"></div>
     `;
     this.container.innerHTML = this.markup;
     this.linksContainer = this.container.querySelector('.c-browser-links');
     this.contentList = this.container.querySelector('.c-browser-content-list');
     this.expandButton = this.container.querySelector('.c-browser-expand-button');
-    this.expandButton.addEventListener('click', () => {
-      this.linksContainer.classList.toggle('hidden');
-      this.contentList.classList.toggle('hidden');
-    });
-    // Test calls
-    const linksData = this.getContentTypeQuantities(sampleContentData);
-    this.publishLinks(linksData);
-    this.publishContent(sampleContentData);
   }
 
   // Call createLink for all linksData elements
   publishLinks(linksData) {
+    this.linksContainer.innerHTML = '';
     const keys = Object.keys(linksData);
     keys.forEach((key) => {
       this.linksContainer.innerHTML += `
@@ -55,6 +32,7 @@ export default class ContentBrowser extends BasicComponent {
 
   // publishContent
   publishContent(contentData) {
+    this.contentList.innerHTML = '';
     contentData.forEach((fileInfo) => {
       this.contentList.innerHTML += ` 
         <div>
@@ -67,11 +45,8 @@ export default class ContentBrowser extends BasicComponent {
     });
   }
 
-  // Pre-filter content types to handle together images, text and others
-  // Necessary function needs to be added
-
   // Counts all content types from server data
-  getContentTypeQuantities(contentData) {
+  getLinks(contentData) {
     const linksData = {};
     contentData.forEach((fileInfo) => {
       if (!linksData[fileInfo.fileType]) {
@@ -81,6 +56,10 @@ export default class ContentBrowser extends BasicComponent {
       }
     });
     return linksData;
+  }
+
+  toggle() {
+    this.contentList.classList.toggle('hidden');
   }
 
   // Clear

@@ -1,7 +1,8 @@
 import { create } from './utils/utils';
 
-export default class BasicComponent {
+export default class BasicComponent extends EventTarget {
   constructor(containerClassName) {
+    super();
     this.container = create('div', containerClassName);
   }
 
@@ -11,5 +12,12 @@ export default class BasicComponent {
 
   html() {
     return this.container;
+  }
+
+  addElements(elementsContainer) {
+    const elementsNames = Object.keys(elementsContainer);
+    elementsNames.forEach((elementName) => {
+      this[elementName] = elementsContainer[elementName];
+    });
   }
 }

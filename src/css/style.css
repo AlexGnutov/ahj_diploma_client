@@ -2,6 +2,13 @@
   width: 600px;
   margin-right: auto;
   margin-left: auto;
+  position: relative;
+}
+
+.column-container {
+  width: 600px;
+  margin-right: auto;
+  margin-left: auto;
   display: flex;
 }
 .main-container {

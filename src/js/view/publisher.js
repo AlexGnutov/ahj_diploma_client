@@ -1,4 +1,5 @@
 import Message from '../components/message/message';
+import BotMessage from "../components/bot-message/bot-message";
 
 export default class Publisher {
   constructor(service, messagesList) {
@@ -49,5 +50,14 @@ export default class Publisher {
   // Removes all messages from list
   clearMessagesList() {
     this.messagesContainer.innerHTML = '';
+  }
+
+  // Place temporal bot message
+  publishTempBotMessage(messageData) {
+    const botMessage = new BotMessage(messageData);
+    botMessage.bindToDOM(this.messagesContainer);
+    setTimeout(() => {
+      botMessage.html().remove();
+    }, 10000);
   }
 }

@@ -1,0 +1,9 @@
+.bot-positive {
+  background-color: lightblue;
+}
+.bot-negative {
+  background-color: red;
+}
+.bot-sleeping {
+  background-color: darkgray;
+}
