@@ -5,13 +5,13 @@ export default class LaunchController extends BasicController {
     const latestMessages = await this.httpService.getLatestMessages();
     if (latestMessages) {
       this.messagesCache.addAsOlder(latestMessages);
-      this.publisher.publishMessages(latestMessages);
+      this.messagesPage.publishMessages(latestMessages);
     } else {
       console.log('Server is not available');
       this.offlineMessage.show();
       const messages = this.messagesCache.loadFromLocalStorage();
       if (messages[0]) {
-        this.publisher.publishMessages(messages);
+        this.messagesPage.publishMessages(messages);
       }
     }
   }

@@ -3,6 +3,7 @@ import AddFilesController from './add-files-controller';
 import MessagesController from './messages-controller';
 import LaunchController from './launch-controller';
 import BasicController from '../common/basic-controller';
+import SearchController from "./search-controller";
 
 export default class HostController extends BasicController {
   async initialize() {
@@ -34,5 +35,12 @@ export default class HostController extends BasicController {
       this.services,
     );
     this.messagesController.initialize();
+
+    // Controls search tool operations
+    this.searchController = new SearchController(
+      this.elements,
+      this.services,
+    );
+    this.searchController.initialize();
   }
 }

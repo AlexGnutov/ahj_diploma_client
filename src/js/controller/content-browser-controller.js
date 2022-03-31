@@ -3,14 +3,13 @@ import BasicController from '../common/basic-controller';
 
 export default class ContentBrowserController extends BasicController {
   initialize() {
-    // Process expand button click
+    // Expand button click
     fromEvent(
       this.contentBrowser.expandButton, 'click',
     ).subscribe(() => {
-      this.contentBrowser.toggle();
+      this.filesPage.show();
     });
-
-    // Starts content data update with SSE
+    // Starts content data update with SSE (Never restarts)
     this.startContentDataUpdate();
   }
 
@@ -24,7 +23,7 @@ export default class ContentBrowserController extends BasicController {
       const contentData = JSON.parse(evt.data);
       const linksData = this.contentBrowser.getLinks(contentData);
       this.contentBrowser.publishLinks(linksData);
-      this.contentBrowser.publishContent(contentData);
+      this.filesPage.publishContentData(contentData);
     });
     this.sse.addEventListener('error', (evt) => {
       console.log('Content Data Update Error: ', evt);

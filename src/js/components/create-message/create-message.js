@@ -5,7 +5,7 @@ export default class CreateMessage extends BasicComponent {
     super('cm-container');
     this.markup = `
         <form class="cm-form">
-            <button class="cm-chaos-button">@</button>
+            <button type="button" class="cm-chaos-button">@</button>
             <input class="cm-text-input" name="text">
             <button class="cm-send-button">Send</button>            
             <div class="cm-file-inputs"></div>
@@ -18,16 +18,16 @@ export default class CreateMessage extends BasicComponent {
     this.textInput = this.container.querySelector('.cm-text-input');
     this.sendButton = this.container.querySelector('.cm-send-button');
     this.chaosButton = this.container.querySelector('.cm-chaos-button');
-
-
     this.addButton = this.container.querySelector('.cm-add-button');
     this.form = this.container.querySelector('.cm-form');
+    this.init();
   }
 
   init() {
     this.chaosButton.addEventListener('click', () => {
       if (!this.textInput.value.startsWith('@chaos:')) {
         this.textInput.value = '@chaos:'.concat(this.textInput.value);
+        this.textInput.focus();
       } else {
         this.textInput.value = this.textInput.value.replace('@chaos:', '');
       }

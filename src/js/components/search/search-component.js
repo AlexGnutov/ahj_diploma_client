@@ -9,13 +9,13 @@ export default class SearchComponent extends BasicComponent {
       `;
     this.container.innerHTML = this.markup;
     // Links
-    this.input = this.container.querySelector('.sc-search-input');
+    this.searchInput = this.container.querySelector('.sc-search-input');
     this.searchButton = this.container.querySelector('.sc-search-button');
   }
 
   disable() {
     this.searchButton.disabled = true;
-    this.input.disabled = true;
+    this.searchInput.disabled = true;
     this.container.classList.toggle('search-inactive');
   }
 }

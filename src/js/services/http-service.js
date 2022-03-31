@@ -49,8 +49,20 @@ export default class HttpService {
     try {
       const response = await fetch(reqURL);
       if (response.ok) {
-        const reply = await response.json();
-        return reply;
+        return await response.json();
+      }
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async searchInMessages(searchString) {
+    const reqURL = `${this.hostURL}api/messages/search?key=${searchString}`;
+    try {
+      const response = await fetch(reqURL);
+      if (response.ok) {
+        return await response.json();
       }
       return null;
     } catch (e) {

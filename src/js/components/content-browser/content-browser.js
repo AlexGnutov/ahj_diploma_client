@@ -30,7 +30,7 @@ export default class ContentBrowser extends BasicComponent {
     });
   }
 
-  // publishContent
+  // DEPRECATED - replaced by relevant publisher method
   publishContent(contentData) {
     this.contentList.innerHTML = '';
     contentData.forEach((fileInfo) => {

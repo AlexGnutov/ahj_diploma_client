@@ -1,0 +1,44 @@
+.chat-window-container {
+  background-color: lightgrey;
+  position: relative;
+}
+.ml-download-bar {
+  padding: 5px;
+  text-align: center;
+  background-color: lightblue;
+}
+.messages-list {
+  position: relative;
+  height: 700px;
+  overflow-y: auto;
+  padding-bottom: 50px;
+}
+
+.content-container,
+.search-results-container {
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(256, 256, 256, 1);
+  padding: 20px 10px;
+  margin: 20px;
+  z-index: 5;
+}
+.search-results-list,
+.content-list {
+  max-height: 600px;
+  overflow-y: auto;
+}
+.search-results-close,
+.content-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,26 @@
+.content-message-container {
+  display: flex;
+  padding: 5px 10px;
+  background-color: lightblue;
+  border-radius: 5px;
+  align-items: center;
+  font-size: small;
+}
+
+.content-message-container:nth-child(n+2) {
+  margin-top: 10px;
+}
+.content-message-date {
+  user-select: none;
+  width: 20%;
+}
+.content-message-filetype {
+  user-select: none;
+  width: 25%;
+}
+.content-message-link {
+  width: 50%;
+  text-decoration: none;
+  font-weight: bold;
+  color: inherit;
+}

@@ -1,4 +1,4 @@
-.message-container {
+.chat-message-container {
   padding: 5px;
 }
 
@@ -9,7 +9,7 @@
 
 }
 
-.message-card {
+.chat-message-card {
   width: 300px;
   background-color: lightgreen;
   border-radius: 5px;
@@ -17,23 +17,27 @@
   padding: 10px;
 }
 
-.message-header {
+.chat-message-header {
   font-size: small;
   position: relative;
   display: flex;
 }
-.message-user {
+.chat-message-user {
   min-width: 50%;
   text-align: left;
 }
-.message-date {
+.chat-message-date {
   min-width: 50%;
   text-align: right;
 }
 
-.message-content {}
+.chat-message-highlighted {
+  background-color: yellow;
+}
 
-.message-attachment {}
+.chat-message-content {}
+
+.chat-message-attachment {}
 
 .hidden {
   display: none;

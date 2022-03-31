@@ -19,19 +19,19 @@ export default class AddFilesController extends BasicController {
     });
     // File(s) drag and dropping
     fromEvent(
-      this.messagesList.html(), 'dragover',
+      this.messagesPage.list, 'dragover',
     ).subscribe((e) => {
       e.stopPropagation();
       e.preventDefault();
     });
     fromEvent(
-      this.messagesList.html(), 'dragenter',
+      this.messagesPage.list, 'dragenter',
     ).subscribe((e) => {
       e.stopPropagation();
       e.preventDefault();
     });
     fromEvent(
-      this.messagesList.html(), 'drop',
+      this.messagesPage.list, 'drop',
     ).subscribe((e) => {
       e.stopPropagation();
       e.preventDefault();

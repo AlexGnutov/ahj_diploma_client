@@ -1,4 +1,4 @@
-import BasicComponent from '../../common/basic-component';
+import BasicComponent from '../../../common/basic-component';
 
 export default class OfflineMessage extends BasicComponent {
   constructor() {
@@ -7,7 +7,7 @@ export default class OfflineMessage extends BasicComponent {
       <div class="offline-message">
         <div class="offline-message-content">  
         <h2>К сожалению, сервер недоступен.</h2> 
-        <p>Перезагрузите страницу или продолжите работу в ограниченном режиме.В этом случае будут доступны только сохранённые в памяти вашего бразура сообщения.</p>         
+        <p>Перезагрузите страницу или продолжите работу в ограниченном режиме.В этом случае будут доступны только последние сохранённые в памяти вашего бразура сообщения.</p>         
         </div>
         <button class="offline-message-reload">Перезагрузить страницу</button>
         <button class="offline-message-continue">Продолжить работу</button>
