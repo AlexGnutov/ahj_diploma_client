@@ -8,7 +8,7 @@ export default class FilesCacheService {
 
   grabFiles() {
     const newInput = create('input', 'cm-file-input');
-    newInput.accept = '.txt, .pdf';
+    newInput.accept = '.txt, .pdf, images/*, audio/*, video/*';
     newInput.type = 'file';
     newInput.multiple = true;
     newInput.addEventListener('change', (e) => {
@@ -22,7 +22,7 @@ export default class FilesCacheService {
 
   updateFilesList() {
     this.attachmentsList.showFiles(this.files);
-    console.log(this.files);
+    // console.log(this.files);
   }
 
   addFilesToCache(fileList) {

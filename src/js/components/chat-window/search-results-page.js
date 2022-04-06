@@ -3,15 +3,15 @@ import ChatMessage from '../messages/chat-message/chat-message';
 
 export default class SearchResultsPage extends BasicComponent {
   constructor() {
-    super('search-results-container hidden');
+    super('search-results-container hidden widget-container');
     this.markup = `
-        <button class="search-results-close">X</button>
+        <button class="close-button">x</button>
         <h3>Результаты поиска:</h3>
         <div class="search-results-list"></div>
     `;
     this.container.innerHTML = this.markup;
     this.list = this.container.querySelector('.search-results-list');
-    this.closeButton = this.container.querySelector('.search-results-close');
+    this.closeButton = this.container.querySelector('.close-button');
     this.init();
   }
 
@@ -23,7 +23,7 @@ export default class SearchResultsPage extends BasicComponent {
 
   // Publish search results
   publishSearchResults(searchResults, searchString) {
-    console.log('SEARCH PUBLISH');
+    // console.log('SEARCH PUBLISH');
     this.list.innerHTML = '';
     if (searchResults.length > 0) {
       searchResults.forEach((messageData) => {

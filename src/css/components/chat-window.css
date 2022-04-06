@@ -1,5 +1,5 @@
 .chat-window-container {
-  background-color: lightgrey;
+  background-color: midnightblue;
   position: relative;
 }
 .ml-download-bar {
@@ -9,7 +9,7 @@
 }
 .messages-list {
   position: relative;
-  height: 700px;
+  height: 500px;
   overflow-y: auto;
   padding-bottom: 50px;
 }

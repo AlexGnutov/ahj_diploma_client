@@ -13,5 +13,6 @@ export default class ContentMessage extends BasicComponent {
                 download="${fileName}">${fileName}</a>
     `;
     this.container.innerHTML = this.markup;
+    this.container.dataset.fileType = fileType;
   }
 }

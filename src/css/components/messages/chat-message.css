@@ -1,17 +1,17 @@
 .chat-message-container {
   padding: 5px;
+  display: flex;
 }
 
 .left-position {
-
 }
 .right-position {
-
+  justify-content: flex-end;
 }
 
 .chat-message-card {
   width: 300px;
-  background-color: lightgreen;
+  background-color: #25ee25;
   border-radius: 5px;
   box-sizing: border-box;
   padding: 10px;

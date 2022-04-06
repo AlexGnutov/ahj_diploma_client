@@ -1,6 +1,6 @@
 import BasicComponent from '../../common/basic-component';
 
-export default class AttachedFiles extends BasicComponent{
+export default class AttachedFiles extends BasicComponent {
   constructor() {
     super('cm-attachments');
   }
@@ -19,6 +19,7 @@ export default class AttachedFiles extends BasicComponent{
     });
   }
 
+  // eslint-disable-next-line class-methods-use-this
   removeFileFromList(button) {
     if (!button.classList.contains('cm-rm-file-button')) {
       return null;

@@ -2,19 +2,18 @@ import BasicComponent from '../../common/basic-component';
 
 export default class ContentBrowser extends BasicComponent {
   constructor() {
-    super('c-browser-container');
+    super('c-browser-container widget-container');
     this.markup = `
       <div class="c-browser-header">
-        <span>Content Browser</span>
-        <button class="c-browser-expand-button">+</button>
+        <span>Файлы</span>
+        <button class="c-browser-expand-button round-button">+</button>
       </div>
       <div class="c-browser-links"></div>
-      <div class="c-browser-content-list hidden"></div>
     `;
     this.container.innerHTML = this.markup;
     this.linksContainer = this.container.querySelector('.c-browser-links');
-    this.contentList = this.container.querySelector('.c-browser-content-list');
     this.expandButton = this.container.querySelector('.c-browser-expand-button');
+    this.highlightedLink = null;
   }
 
   // Call createLink for all linksData elements
@@ -23,29 +22,15 @@ export default class ContentBrowser extends BasicComponent {
     const keys = Object.keys(linksData);
     keys.forEach((key) => {
       this.linksContainer.innerHTML += `
-        <div class="c-browser-link">
+        <div class="c-browser-link" data-key="${key}">
             ${key} (${linksData[key]})
         </div>
       `;
     });
   }
 
-  // DEPRECATED - replaced by relevant publisher method
-  publishContent(contentData) {
-    this.contentList.innerHTML = '';
-    contentData.forEach((fileInfo) => {
-      this.contentList.innerHTML += ` 
-        <div>
-            <span>${fileInfo.fileType}</span>
-            <a className="content-list-link"
-                href="http://localhost:8080/api/files/download/${fileInfo.fileName}"
-                download="${fileInfo.fileName}">${fileInfo.fileName}</a>
-        </div>
-        `;
-    });
-  }
-
   // Counts all content types from server data
+  // eslint-disable-next-line class-methods-use-this
   getLinks(contentData) {
     const linksData = {};
     contentData.forEach((fileInfo) => {
@@ -58,12 +43,23 @@ export default class ContentBrowser extends BasicComponent {
     return linksData;
   }
 
-  toggle() {
-    this.contentList.classList.toggle('hidden');
+  highlightLink(activeLink) {
+    if (activeLink.classList.contains('selected-link')) {
+      activeLink.classList.remove('selected-link');
+    } else {
+      Array.from(this.linksContainer.children)
+        .forEach((link) => link.classList
+          .remove('selected-link'));
+      activeLink.classList.add('selected-link');
+    }
   }
 
-  // Clear
   clear() {
-    this.container.innerHTML = '';
-  };
+    this.linksContainer.innerHTML = '';
+  }
+
+  freeze() {
+    this.expandButton.disabled = true;
+    this.container.classList.add('inactive');
+  }
 }

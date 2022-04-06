@@ -1,0 +1,70 @@
+.notification-widget-container {}
+
+.notification-form-container {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(10, 10, 10, 0.2);
+}
+.notification-form-box {
+  width: 250px;
+  min-height: 150px;
+  text-align: center;
+  position: relative;
+  padding: 20px 20px;
+}
+.new-notification-form {
+  display: block;
+}
+.notification-form-text {
+  display: block;
+  width: 200px;
+  margin-top: 10px;
+}
+.notification-form-date {
+  min-width: 200px;
+  display: block;
+  margin-top: 10px;
+}
+.notification-form-create {
+  margin-top: 10px;
+  display: block;
+}
+
+/* Notification card */
+.notification-card-container {
+  position: relative;
+  margin-top: 10px;
+  background-color: lightblue;
+  padding: 5px;
+}
+.notification-card-text {
+
+}
+.notification-card-date {
+  margin-top: 10px;
+  font-size: x-small;
+}
+.notification-card-delete {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: red;
+  color: white;
+  font-size: medium;
+  padding: 0;
+}
+
+.hidden {
+  display: none;
+}

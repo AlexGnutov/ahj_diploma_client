@@ -5,16 +5,17 @@ export default class WebSocketService {
     this.left = this.attempts;
   }
 
-  startWebSocket() {
-    this.ws = new WebSocket('ws://localhost:8080');
+  startWebSocket(stateService) {
+    this.ws = new WebSocket('wss://ahjdiploma.herokuapp.com');
     // Standard routes
     this.ws.addEventListener('open', () => {
-      console.log('WS connected');
+      stateService.switchStateToOnline(); // 1 - OPEN
     });
-    // this.ws.addEventListener('close', () => {
-    //   console.log('WS connection closed');
-    // });
-    this.ws.addEventListener('error', () => {
+    this.ws.addEventListener('close', () => {
+      stateService.switchStateToOffline(); // 3 - CLOSED
+    });
+    this.ws.addEventListener('error', (e) => e);
+    /* DO RECONNECTION
       console.log('WS server error - try to reconnect...');
       setTimeout(() => {
         if (this.left > 0) {
@@ -24,7 +25,7 @@ export default class WebSocketService {
           console.log(`Did ${this.attempts} attempts - no WS available.`);
         }
       }, 3000);
-    });
+      */
   }
 
   sendMessage(text, fileNames, fileTypes) {
@@ -40,8 +41,7 @@ export default class WebSocketService {
     if (this.ws.readyState === WebSocket.OPEN) {
       this.ws.send(JSON.stringify(messageData));
     } else {
-      console.log('reconnection needed');
+      // console.log('reconnection needed');
     }
   }
 }
-

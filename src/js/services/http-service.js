@@ -1,7 +1,6 @@
 export default class HttpService {
   constructor() {
-    this.hostURL = 'http://localhost:8080/';
-    this.uploadURL = 'http://localhost:8080/api/files/upload';
+    this.hostURL = 'https://ahjdiploma.herokuapp.com/';
   }
 
   async sendFile(files) {
@@ -9,7 +8,7 @@ export default class HttpService {
     files.forEach((file, index) => {
       data.append(`file-${index}`, file);
     });
-    const response = await fetch(this.uploadURL, {
+    const response = await fetch(`${this.hostURL}api/files/upload`, {
       method: 'POST',
       body: data,
     });
@@ -20,7 +19,7 @@ export default class HttpService {
   }
 
   async loadPreviousMessages(lastDate) {
-    const reqURL = `http://localhost:8080/api/messages/next?lastDate=${lastDate}`;
+    const reqURL = `${this.hostURL}api/messages/next?lastDate=${lastDate}`;
     const response = await fetch(reqURL);
     if (response.ok) {
       const reply = await response.json();
@@ -31,7 +30,7 @@ export default class HttpService {
 
   async getBotReply(text) {
     const command = text.replace('@chaos:', '').trim();
-    const reqURL = `http://localhost:8080/api/bot?command=${command}`;
+    const reqURL = `${this.hostURL}api/bot?command=${command}`;
     const response = await fetch(reqURL);
     if (response.ok) {
       const reply = await response.json();
@@ -59,6 +58,47 @@ export default class HttpService {
 
   async searchInMessages(searchString) {
     const reqURL = `${this.hostURL}api/messages/search?key=${searchString}`;
+    try {
+      const response = await fetch(reqURL);
+      if (response.ok) {
+        return await response.json();
+      }
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async getNotifications() {
+    const reqURL = `${this.hostURL}api/notifications`;
+    try {
+      const response = await fetch(reqURL);
+      if (response.ok) {
+        return await response.json();
+      }
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async createNotification(notificationData) {
+    const data = new FormData();
+    Object.keys(notificationData).forEach((key) => {
+      data.append(key, notificationData[key]);
+    });
+    const response = await fetch(`${this.hostURL}api/notifications`, {
+      method: 'POST',
+      body: data,
+    });
+    if (response.ok) {
+      return response.json();
+    }
+    return null;
+  }
+
+  async deleteNotification(id) {
+    const reqURL = `${this.hostURL}api/notifications/delete?id=${id}`;
     try {
       const response = await fetch(reqURL);
       if (response.ok) {

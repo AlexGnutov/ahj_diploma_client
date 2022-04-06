@@ -1,8 +1,8 @@
 .control-bar-container {
-  border: black 1px solid;
   box-sizing: border-box;
   text-align: right;
 }
 .cb-sidebar-button {
-
+  width: 30px;
+  height: 30px;
 }

@@ -1,10 +1,13 @@
-import { fromEvent } from 'rxjs';
+import { debounceTime, fromEvent } from 'rxjs';
 import BasicController from '../common/basic-controller';
 
 export default class MessagesController extends BasicController {
-  initialize() {
-    this.webSocketService.startWebSocket();
+  constructor(elements, services) {
+    super(elements, services);
+    this.hasPrevious = true;
+  }
 
+  initialize() {
     // Send new chat-message(and files) or bot command
     fromEvent(
       this.createMessage.form, 'submit',
@@ -22,7 +25,7 @@ export default class MessagesController extends BasicController {
         if (files.length > 0) {
           const reply = await this.httpService.sendFile(files);
           if (reply.status === 'success') {
-            console.log(reply);
+            // console.log(reply);
             const { fileNames } = reply;
             const { fileTypes } = reply;
             this.webSocketService.sendMessage(text, fileNames, fileTypes);
@@ -43,7 +46,8 @@ export default class MessagesController extends BasicController {
         this.messagesPage.publishMessages([message]);
       });
 
-    // Load more messages
+    // DEPRECATED Load more messages (old version) - just in case not deleted
+    /*
     fromEvent(
       this.messagesPage.loadPreviousButton, 'click',
     ).subscribe(async () => {
@@ -54,16 +58,29 @@ export default class MessagesController extends BasicController {
         this.messagesPage.publishMessages(oldMessages, false);
       }
     });
+    */
 
-    /*
     // Scrolling
     fromEvent(
-      this.list.html(), 'scroll',
-    ).subscribe((e) => {
-      if (e.target.scrollTop < 20) {
-        e.target.scrollTop = 20;
+      this.messagesPage.list, 'scroll',
+    ).pipe(
+      debounceTime(200),
+    ).subscribe(async (e) => {
+      if (e.target.scrollTop < 10 && this.hasPrevious) {
+        const oldestMessageId = this.messagesCache.getOldestDate();
+        const oldMessages = await this.httpService.loadPreviousMessages(oldestMessageId);
+        if (oldMessages[0]) {
+          this.messagesCache.addAsOlder(oldMessages);
+          this.messagesPage.publishMessages(oldMessages, false);
+        } else {
+          this.hasPrevious = false;
+        }
+        e.target.scrollTop = 10;
       }
     });
-    */
+  }
+
+  freezeCreateMessageElement() {
+    this.createMessage.freeze();
   }
 }

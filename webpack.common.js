@@ -9,6 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '',
+    clean: true,
   },
   module: {
     rules: [
@@ -20,8 +21,12 @@ module.exports = {
         },
       },
       {
+        test: /notification.worker\.js$/,
+        use: { loader: 'worker-loader' }
+      },
+      {
         test: /\.js$/,
-        exclude: /node_modules|service-worker\.js$/,
+        exclude: /node_modules|worker\.js$/,
         use: {
           loader: 'babel-loader',
         },
@@ -60,10 +65,5 @@ module.exports = {
       chunkFilename: '[id].css',
     }),
     new webpack.HotModuleReplacementPlugin(),
-    // new WorkboxPlugin.GenerateSW({
-    //   clientsClaim: true,
-    //   skipWaiting: true,
-    //   navigateFallback: '/',
-    // }),
   ],
 };

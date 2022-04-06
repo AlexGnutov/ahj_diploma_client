@@ -22,11 +22,13 @@ export default class ChatMessage extends BasicComponent {
     this.content = this.container.querySelector('.chat-message-content');
     this.footer = this.container.querySelector('.chat-message-footer');
     // Add content in safe mode
-    console.log(messageData);
     const {
       user, date, content, attachment, fileTypes,
     } = messageData;
     this.user.innerText = user;
+    if (user === 'User') {
+      this.container.classList.add('right-position');
+    }
     this.date.innerText = combineDateString(date);
     this.content.innerText = content;
     this.content.innerHTML = addLinks(this.content, 'chat-message-link');
@@ -41,7 +43,7 @@ export default class ChatMessage extends BasicComponent {
     attachments.forEach((filename, index) => {
       const markup = `
         <div>
-            <span>${fileTypes[index]}</span>
+            <span class="hidden">${fileTypes[index]}</span>
             <a class="message-attachment"
                 href="http://localhost:8080/api/files/download/${filename}"
                 download="${filename}">${filename}</a>

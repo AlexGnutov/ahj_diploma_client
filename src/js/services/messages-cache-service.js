@@ -30,6 +30,7 @@ export default class MessagesCacheService {
     if (this.messages[0]) {
       return this.messages[0].date;
     }
+    return null;
   }
 
   getNewestDate() {
@@ -37,6 +38,7 @@ export default class MessagesCacheService {
     if (this.messages[lastIndex]) {
       return this.messages[lastIndex].date;
     }
+    return null;
   }
 
   getMessages() {

@@ -1,13 +1,11 @@
-.c-browser-container {
-  padding: 10px 5px;
-  min-height: 20px;
-  background-color: lightblue;
-  box-sizing: border-box;
-  border: 1px black solid;
-  position: relative;
+.c-browser-container {}
+
+.c-browser-links {
+  user-select: none;
 }
 
-.c-browser-link {
+.selected-link {
+  font-weight: bold;
 }
 
 .hidden {

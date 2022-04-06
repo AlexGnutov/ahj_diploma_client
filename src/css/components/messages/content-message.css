@@ -12,14 +12,14 @@
 }
 .content-message-date {
   user-select: none;
-  width: 20%;
+  width: 25%;
 }
 .content-message-filetype {
   user-select: none;
-  width: 25%;
+  width: 20%;
 }
 .content-message-link {
-  width: 50%;
+  width: 55%;
   text-decoration: none;
   font-weight: bold;
   color: inherit;

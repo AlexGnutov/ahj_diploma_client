@@ -10,18 +10,22 @@ import WebSocketService from './services/web-socket';
 import HttpService from './services/http-service';
 import MessagesCacheService from './services/messages-cache-service';
 import FilesCacheService from './services/files-cache-service';
-import ChatWindow from './components/messages-list/chat-window';
-import FilesPage from './components/messages-list/files-page';
-import MessagesPage from './components/messages-list/messages-page';
-import SearchResultsPage from './components/messages-list/search-results-page';
+import ChatWindow from './components/chat-window/chat-window';
+import FilesPage from './components/chat-window/files-page';
+import MessagesPage from './components/chat-window/messages-page';
+import SearchResultsPage from './components/chat-window/search-results-page';
+import NotificationWidget from './components/notification-widget/notification-widget';
+import NotificationForm from './components/notification-widget/notification-form';
+import StateService from './services/state-service';
 
-export default class Main extends BasicComponent {
+export default class MainComponent extends BasicComponent {
   constructor() {
     super('app-container');
     this.markup = `
+        <h1 class="app-header">Chaos Organizer</h1>
         <div class="column-container">
             <div id="main-container" class="main-container"></div>
-            <div id="side-container" class="side-container"></div>
+            <div id="side-container" class="side-container hidden"></div>
         </div>
     `;
     this.container.innerHTML = this.markup;
@@ -38,7 +42,9 @@ export default class Main extends BasicComponent {
     this.controlBar = new ControlBar(this.sideContainer);
     this.contentBrowserComponent = new ContentBrowser();
     this.offlineMessage = new OfflineMessage();
-    this.searchComponent = new SearchComponent();
+    this.searchWidget = new SearchComponent();
+    this.notificationWidget = new NotificationWidget();
+    this.notificationForm = new NotificationForm();
   }
 
   async initialize() {
@@ -49,12 +55,15 @@ export default class Main extends BasicComponent {
     this.messagesPage.bindToDOM(this.chatWindow.html());
     this.searchResultsPage.bindToDOM(this.chatWindow.html());
     this.createMessage.bindToDOM(this.container);
-    this.attachedFilesList.bindToDOM(this.container);
+    this.attachedFilesList.bindToDOM(this.createMessage.cmAttachedFiles);
     // Add visual components - side container
     this.contentBrowserComponent.bindToDOM(this.sideContainer);
-    this.offlineMessage.bindToDOM(this.container);
-    this.searchComponent.bindToDOM(this.sideContainer);
+    this.searchWidget.bindToDOM(this.sideContainer);
+    this.notificationWidget.bindToDOM(this.sideContainer);
+    this.notificationForm.bindToDOM(this.container); // popups
+    this.offlineMessage.bindToDOM(this.container); // popups
 
+    // All components will be accessible from controllers
     const elementsContainer = {
       messagesPage: this.messagesPage,
       searchResultsPage: this.searchResultsPage,
@@ -64,14 +73,18 @@ export default class Main extends BasicComponent {
       controlBar: this.controlBar,
       contentBrowser: this.contentBrowserComponent,
       offlineMessage: this.offlineMessage,
-      search: this.searchComponent,
+      search: this.searchWidget,
+      notificationWidget: this.notificationWidget,
+      notificationForm: this.notificationForm,
     };
 
+    // Services
     const servicesContainer = {
       webSocketService: new WebSocketService(),
       httpService: new HttpService(),
       messagesCache: new MessagesCacheService(),
       fileCache: new FilesCacheService(this.attachedFilesList),
+      stateService: new StateService(),
     };
 
     // Create Host controller

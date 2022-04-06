@@ -1,19 +1,19 @@
 import BasicComponent from '../../common/basic-component';
-import ChatMessage from "../messages/chat-message/chat-message";
-import BotMessage from "../messages/bot-message/bot-message";
+import ChatMessage from '../messages/chat-message/chat-message';
+import BotMessage from '../messages/bot-message/bot-message';
 
 export default class MessagesPage extends BasicComponent {
   constructor() {
     super('messages-page-container');
+    //  <div class="ml-download-bar">
+    //    <button class="ml-load-button">Load previous messages</button>
+    //  </div>
     this.markup = `
-        <div class="ml-download-bar">
-            <button class="ml-load-button">Load previous messages</button>
-        </div>
-        <div class="messages-list"></div> 
+        <div class="messages-list app-block"></div> 
     `;
     this.container.innerHTML = this.markup;
     this.list = this.container.querySelector('.messages-list');
-    this.loadPreviousButton = this.container.querySelector('.ml-load-button');
+    // this.loadPreviousButton = this.container.querySelector('.ml-load-button');
   }
 
   publishMessages(messagesData, direct = true) {
@@ -61,5 +61,10 @@ export default class MessagesPage extends BasicComponent {
       botMessage.html().remove();
     }, 10000);
     this.scrollDown();
+  }
+
+  // Clear output
+  clear() {
+    this.list.innerHTML = '';
   }
 }
