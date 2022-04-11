@@ -29,7 +29,7 @@
 }
 .search-results-list,
 .content-list {
-  max-height: 600px;
+  max-height: 400px;
   overflow-y: auto;
 }
 .search-results-close,

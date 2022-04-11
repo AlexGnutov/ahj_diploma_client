@@ -1,5 +1,6 @@
 import BasicComponent from '../../../common/basic-component';
 import { combineDateOnlyString } from '../../../common/utils/date-processing';
+import shortLink from '../../../common/utils/short-link';
 
 export default class ContentMessage extends BasicComponent {
   constructor(messageData) {
@@ -10,7 +11,7 @@ export default class ContentMessage extends BasicComponent {
             <div class="content-message-filetype">${fileType}</div>
             <a class="content-message-link"
                 href="http://localhost:8080/api/files/download/${fileName}"
-                download="${fileName}">${fileName}</a>
+                download="${fileName}">${shortLink(fileName)}</a>
     `;
     this.container.innerHTML = this.markup;
     this.container.dataset.fileType = fileType;
