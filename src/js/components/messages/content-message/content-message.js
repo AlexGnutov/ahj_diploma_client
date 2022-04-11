@@ -10,7 +10,7 @@ export default class ContentMessage extends BasicComponent {
             <div class="content-message-date">${combineDateOnlyString(date)}</div>
             <div class="content-message-filetype">${fileType}</div>
             <a class="content-message-link"
-                href="http://localhost:8080/api/files/download/${fileName}"
+                href="https://ahjdiploma.herokuapp.com/api/files/download/${fileName}"
                 download="${fileName}">${shortLink(fileName)}</a>
     `;
     this.container.innerHTML = this.markup;
