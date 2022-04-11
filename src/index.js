@@ -3,6 +3,7 @@ import './css/components/messages/chat-message.css';
 import './css/components/messages/bot-message.css';
 import './css/components/messages/content-message.css';
 import './css/components/messages/offline-message.css';
+import './css/components/messages/busy-message.css';
 import './css/components/create-message.css';
 import './css/components/chat-window.css';
 import './css/components/control-bar.css';

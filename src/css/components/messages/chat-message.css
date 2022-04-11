@@ -11,6 +11,7 @@
 
 .chat-message-card {
   width: 300px;
+  min-height: 55px;
   background-color: #25ee25;
   border-radius: 5px;
   box-sizing: border-box;
@@ -35,7 +36,9 @@
   background-color: yellow;
 }
 
-.chat-message-content {}
+.chat-message-content {
+  overflow-wrap: break-word;
+}
 
 .chat-message-attachment {}
 

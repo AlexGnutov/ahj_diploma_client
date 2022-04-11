@@ -17,6 +17,7 @@ import SearchResultsPage from './components/chat-window/search-results-page';
 import NotificationWidget from './components/notification-widget/notification-widget';
 import NotificationForm from './components/notification-widget/notification-form';
 import StateService from './services/state-service';
+import BusyMessage from './components/messages/busy-message/busy-message';
 
 export default class MainComponent extends BasicComponent {
   constructor() {
@@ -42,6 +43,7 @@ export default class MainComponent extends BasicComponent {
     this.controlBar = new ControlBar(this.sideContainer);
     this.contentBrowserComponent = new ContentBrowser();
     this.offlineMessage = new OfflineMessage();
+    this.busyMessage = new BusyMessage();
     this.searchWidget = new SearchComponent();
     this.notificationWidget = new NotificationWidget();
     this.notificationForm = new NotificationForm();
@@ -62,6 +64,7 @@ export default class MainComponent extends BasicComponent {
     this.notificationWidget.bindToDOM(this.sideContainer);
     this.notificationForm.bindToDOM(this.container); // popups
     this.offlineMessage.bindToDOM(this.container); // popups
+    this.busyMessage.bindToDOM(this.container); // popups
 
     // All components will be accessible from controllers
     const elementsContainer = {
@@ -73,6 +76,7 @@ export default class MainComponent extends BasicComponent {
       controlBar: this.controlBar,
       contentBrowser: this.contentBrowserComponent,
       offlineMessage: this.offlineMessage,
+      busyMessage: this.busyMessage,
       search: this.searchWidget,
       notificationWidget: this.notificationWidget,
       notificationForm: this.notificationForm,

@@ -1,6 +1,7 @@
 import BasicComponent from '../../../common/basic-component';
 import { combineDateString } from '../../../common/utils/date-processing';
 import { addLinks } from '../../../common/utils/links-parsing';
+import shortLink from '../../../common/utils/short-link';
 
 export default class ChatMessage extends BasicComponent {
   constructor(messageData) {
@@ -45,8 +46,8 @@ export default class ChatMessage extends BasicComponent {
         <div>
             <span class="hidden">${fileTypes[index]}</span>
             <a class="message-attachment"
-                href="http://localhost:8080/api/files/download/${filename}"
-                download="${filename}">${filename}</a>
+                href="https://ahjdiploma.herokuapp.com/api/files/download/${filename}"
+                download="${filename}">${shortLink(filename)}</a>
         </div>
       `;
       this.footer.innerHTML += markup;

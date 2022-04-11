@@ -1,0 +1,51 @@
+body {
+  position: relative;
+}
+
+.busy-message-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(10, 10, 10, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.busy-circle {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.busy-brick {
+  height: 20px;
+  width: 20px;
+  background-color: #f3c100;
+  animation-name: busy-rotate;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+}
+.busy-text {
+  padding-left: 5px;
+  color: white;
+}
+@keyframes busy-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hidden {
+  display: none;
+}

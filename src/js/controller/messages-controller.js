@@ -14,6 +14,7 @@ export default class MessagesController extends BasicController {
     )
       .subscribe(async (event) => {
         event.preventDefault();
+        this.busyMessage.show();
         const text = this.createMessage.returnText();
         if (text.startsWith('@chaos:')) {
           const reply = await this.httpService.getBotReply(text);
@@ -35,6 +36,9 @@ export default class MessagesController extends BasicController {
         }
         this.fileCache.clear();
         this.createMessage.clear();
+        setTimeout(() => {
+          this.busyMessage.hide();
+        }, 200);
       });
 
     // Receive mirror - to publish chat-message
@@ -67,6 +71,7 @@ export default class MessagesController extends BasicController {
       debounceTime(200),
     ).subscribe(async (e) => {
       if (e.target.scrollTop < 10 && this.hasPrevious) {
+        this.busyMessage.show();
         const oldestMessageId = this.messagesCache.getOldestDate();
         const oldMessages = await this.httpService.loadPreviousMessages(oldestMessageId);
         if (oldMessages[0]) {
@@ -77,6 +82,9 @@ export default class MessagesController extends BasicController {
         }
         e.target.scrollTop = 10;
       }
+      setTimeout(() => {
+        this.busyMessage.hide();
+      }, 200);
     });
   }
 
