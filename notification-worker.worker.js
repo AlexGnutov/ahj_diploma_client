@@ -1,0 +1,1 @@
+(()=>{let e,a=[];self.addEventListener("message",(t=>{e&&clearInterval(e),a=t.data,a[0]&&(e=setInterval((()=>{a.forEach((a=>{const t=Date.now();parseInt(`${a.date}`,10)-t<3e4&&(self.postMessage(a),clearInterval(e))}))}),1e4))}))})();
